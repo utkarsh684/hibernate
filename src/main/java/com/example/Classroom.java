@@ -70,10 +70,13 @@ public class Classroom {
                 return true;
             }
             if(!vis[curr]){
-                 checkDirectedCycle(graph,vis,recur,e.des);
+                 if(checkDirectedCycle(graph,vis,recur,e.des)){
+                     return true;
+                 }
             }
         }
         recur[curr]=false;
+        return false;
     }
 
     public static void bfs(ArrayList<Edge> graph[],int v,boolean[] vis,int start){
@@ -128,6 +131,7 @@ public class Classroom {
 
         // for disconnected graphs
         boolean vis[]=new boolean[v];
+        boolean recur[] = new boolean[v];
 //        for(int i=0;i<vis.length;i++){
 //            if(!vis[i]){
 //                bfs(graph,v,vis,i);
@@ -140,7 +144,10 @@ public class Classroom {
 //            }
 //        }
 
-        printAllPaths(graph,0,5,vis,"0");
+        createGraph2(graph);
+        System.out.println(checkDirectedCycle(graph,vis,recur,0));
+
+        //printAllPaths(graph,0,5,vis,"0");
 
 
 
